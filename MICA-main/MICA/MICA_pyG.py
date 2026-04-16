@@ -64,7 +64,7 @@ class Train_MICA:
                  dim_input=3000,
                  dim_output=64,
                  weight_factors=None,
-                 fusion_beta=0.3
+                 fusion_beta=0.1   
                  ):
         '''MICA Trainer with cross-modal feature fusion'''
 
@@ -77,24 +77,26 @@ class Train_MICA:
         self.epochs = epochs
         self.dim_input = dim_input
         self.dim_output = dim_output
-        self.fusion_beta = fusion_beta  # 新增：融合系数
-
-        # 固定温度参数为1
+        self.fusion_beta = fusion_beta  
         self.temperature = 1.0
 
         # 处理weight_factors
         if weight_factors is None:
-            if self.datatype == 'SPOTS':
+            if self.datatype == 'SPOTS':   
                 self.epochs = 600
+                self.fusion_beta = 0.5
                 self.weight_factors = [1, 5, 1, 1, 1, 1]  
-            elif self.datatype == 'Stereo-CITE-seq':
+            elif self.datatype == 'Stereo-CITE-seq':    
                 self.epochs = 1500
+                self.fusion_beta = 0.3
                 self.weight_factors = [1, 10, 1, 10, 1, 1]  
-            elif self.datatype == '10x':
+            elif self.datatype == '10x':   
                 self.epochs = 1600
+                self.fusion_beta = 0.5
                 self.weight_factors = [1, 5, 1, 10, 1, 1]  
-            elif self.datatype == 'Spatial-epigenome-transcriptome':
+            elif self.datatype == 'Spatial-epigenome-transcriptome':   
                 self.epochs = 1200
+                self.fusion_beta = 0.1
                 self.weight_factors = [1, 5, 1, 1, 10, 10]  
         else:
             self.weight_factors = weight_factors

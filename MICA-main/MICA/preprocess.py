@@ -39,7 +39,7 @@ def construct_neighbor_graph(adata_omics1, adata_omics2, datatype='SPOTS', n_nei
     adata_omics1.obsm['adj_feature'], adata_omics2.obsm['adj_feature'] = feature_graph_omics1, feature_graph_omics2
 
     ################# augmented feature graph #################
-    # 新增：构建增强特征图
+    #构建增强特征图
     adj_augmented_omics1, adj_augmented_omics2 = construct_augmented_graph(
         adata_omics1, adata_omics2, feature_graph_omics1, feature_graph_omics2
     )
@@ -242,7 +242,7 @@ def adjacent_matrix_preprocessing(adata_omics1, adata_omics2):
     adj_feature_omics2 = preprocess_graph(adj_feature_omics2)
 
     ######################################## construct augmented feature graph ########################################
-    # 新增：处理增强特征图
+    # 处理增强特征图
     adj_augmented_omics1 = torch.FloatTensor(adata_omics1.obsm['adj_augmented'])
     adj_augmented_omics2 = torch.FloatTensor(adata_omics2.obsm['adj_augmented'])
 
@@ -255,8 +255,8 @@ def adjacent_matrix_preprocessing(adata_omics1, adata_omics2):
         'adj_spatial_omics2': adj_spatial_omics2,
         'adj_feature_omics1': adj_feature_omics1,
         'adj_feature_omics2': adj_feature_omics2,
-        'adj_augmented_omics1': adj_augmented_omics1,  # 新增
-        'adj_augmented_omics2': adj_augmented_omics2  # 新增
+        'adj_augmented_omics1': adj_augmented_omics1,  
+        'adj_augmented_omics2': adj_augmented_omics2 
     }
 
     return adj

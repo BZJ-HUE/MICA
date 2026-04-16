@@ -86,7 +86,7 @@ def plot_weight_value(alpha, label, modality1='mRNA', modality2='protein'):
     """Plotting weight values"""
     import pandas as pd
 
-    # 修改为处理三个视图的权重
+    # 处理三个视图的权重
     df = pd.DataFrame(columns=['View1', 'View2', 'View3', 'label'])
     df['View1'], df['View2'], df['View3'] = alpha[:, 0], alpha[:, 1], alpha[:, 2]
     df['label'] = label

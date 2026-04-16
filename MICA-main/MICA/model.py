@@ -27,7 +27,7 @@ class Encoder_overall(Module):
         self.encoder_omics2_feature = Encoder(self.dim_in_feat_omics2, self.dim_out_feat_omics2)
         self.encoder_omics2_augmented = Encoder(self.dim_in_feat_omics2, self.dim_out_feat_omics2)
 
-        # 新增：增强特征编码器（专门处理融合后的特征）
+        # 增强特征编码器（专门处理融合后的特征）
         self.encoder_omics1_augmented_enhanced = Encoder(self.dim_in_feat_omics1, self.dim_out_feat_omics1)
         self.encoder_omics2_augmented_enhanced = Encoder(self.dim_in_feat_omics2, self.dim_out_feat_omics2)
 
@@ -44,13 +44,13 @@ class Encoder_overall(Module):
     def forward(self, features_omics1, features_omics2,
                 adj_spatial_omics1, adj_feature_omics1, adj_augmented_omics1,
                 adj_spatial_omics2, adj_feature_omics2, adj_augmented_omics2,
-                features_omics1_enhanced=None, features_omics2_enhanced=None):  # 新增参数：融合特征
+                features_omics1_enhanced=None, features_omics2_enhanced=None):  
         
         # Omics1 的三个图表示
         emb_latent_spatial_omics1 = self.encoder_omics1_spatial(features_omics1, adj_spatial_omics1)
         emb_latent_feature_omics1 = self.encoder_omics1_feature(features_omics1, adj_feature_omics1)
         
-        # 修改：增强图编码器使用融合后的特征
+        # 增强图编码器使用融合后的特征
         if features_omics1_enhanced is not None:
             emb_latent_augmented_omics1 = self.encoder_omics1_augmented_enhanced(
                 features_omics1_enhanced, adj_augmented_omics1
@@ -65,7 +65,7 @@ class Encoder_overall(Module):
         emb_latent_spatial_omics2 = self.encoder_omics2_spatial(features_omics2, adj_spatial_omics2)
         emb_latent_feature_omics2 = self.encoder_omics2_feature(features_omics2, adj_feature_omics2)
         
-        # 修改：增强图编码器使用融合后的特征
+        # 增强图编码器使用融合后的特征
         if features_omics2_enhanced is not None:
             emb_latent_augmented_omics2 = self.encoder_omics2_augmented_enhanced(
                 features_omics2_enhanced, adj_augmented_omics2

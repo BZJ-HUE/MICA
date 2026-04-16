@@ -1,30 +1,59 @@
-from setuptools import Command, find_packages, setup
+from pathlib import Path
+
+from setuptools import find_packages, setup
+
+BASE_DIR = Path(__file__).resolve().parent
+README_PATH = BASE_DIR.parent / "README.md"
 
 __lib_name__ = "MICA"
-__lib_version__ = "1.1.5"
-__description__ = "Deciphering spatial domains from spatial multi-omics with MICA"
-__url__ = "https://github.com/JinmiaoChenLab/MICA"
-__author__ = "Yahui Long"
-__author_email__ = "longyh@immunol.a-star.edu.sg"
-__license__ = "MIT"
-__keywords__ = ["Spatial multi-omics", "Cross-omics integration", "Deep learning", "Graph neural networks", "Dual attention", "Intra-modal contrastive learning"]
-__requires__ = ["requests",]
+__lib_version__ = "1.0.0"
+__description__ = "MICA: A Cross-Modal Multi-View Contrastive Learning Framework for Spatial Multi-Omics Integration"
+__url__ = "https://github.com/BZJ-HUE/MICA"
+__keywords__ = [
+    "Spatial Multi-modal Omics",
+    "Graph Neural Networks",
+    "Multi-view Contrastive Learning",
+    "Spatial Domain Identification",
+]
 
-with open("README.rst", "r", encoding="utf-8") as f:
-    __long_description__ = f.read()
+__requires__ = [
+    "torch>=1.8.0",
+    "numpy==1.22.3",
+    "scanpy==1.9.1",
+    "anndata==0.8.0",
+    "rpy2==3.4.1",
+    "pandas==1.4.2",
+    "scipy==1.8.1",
+    "scikit-learn==1.1.1",
+    "scikit-misc==0.2.0",
+    "tqdm==4.64.0",
+    "matplotlib==3.4.2",
+    "seaborn>=0.12.0",
+]
+
+if README_PATH.exists():
+    __long_description__ = README_PATH.read_text(encoding="utf-8")
+else:
+    __long_description__ = __description__
 
 setup(
-    name = __lib_name__,
-    version = __lib_version__,
-    description = __description__,
-    url = __url__,
-    author = __author__,
-    author_email = __author_email__,
-    license = __license__,
-    packages = ["MICA"],
-    install_requires = __requires__,
-    zip_safe = False,
-    include_package_data = True,
-    long_description = """Integration of multiple data modalities in a spatially informed manner remains an unmet need for exploiting spatial multi-omics data. Here, we introduce MICA (Modal Intra-modal Contrastive learning and Attention fusion), a novel graph neural network with dual-attention mechanism and intra-modal contrastive learning, to decipher spatial domains by intra-omics integration of spatial location and omics measurement followed by cross-omics integration. We demonstrate that MICA can more accurately resolve spatial domains at a higher resolution across different tissue types and technology platforms, to enable biological insights into cross-modality spatial correlations. MICA is computation resource efficient and can be applied for data from various spatial multi-omics technological platforms, including Spatial-epigenome-transcriptome, Stereo-CITE-seq, SPOTS, and 10x Visium. Next, we will extend MICA to more platforms, such as 10x Genomics Xenium and Nanostring CosMx. """,
-    long_description_content_type="text/markdown"
+    name=__lib_name__,
+    version=__lib_version__,
+    description=__description__,
+    url=__url__,
+    author=__author__,
+    author_email=__author_email__,
+    license=__license__,
+    packages=find_packages(),
+    install_requires=__requires__,
+    include_package_data=True,
+    zip_safe=False,
+    python_requires=">=3.8",
+    long_description=__long_description__,
+    long_description_content_type="text/markdown",
+    keywords=__keywords__,
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+    ],
 )

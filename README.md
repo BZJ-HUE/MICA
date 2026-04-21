@@ -33,6 +33,9 @@ The datasets used in this study are all publicly available from previously publi
   The HLN dataset used in this work was derived from the dataset reported in SpatialGlue and is available via [Zenodo](https://zenodo.org/records/10362607).  
   The original 10x Visium human lymph node data are also available from GEO under accession number [GSE263617](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE263617).
 
+- **Simulated spatial multi-omics dataset**  
+  This dataset was derived from the simulation datasets provided in SpatialGlue and is available via [Zenodo](https://zenodo.org/records/10362607).
+
 - **SPOTS mouse spleen spatial transcriptome--proteome dataset**  
   This dataset is available from GEO under accession number [GSE198353](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE198353).
 
